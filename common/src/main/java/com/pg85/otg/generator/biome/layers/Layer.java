@@ -70,11 +70,6 @@ public abstract class Layer
      */
     protected Layer child;
 
-    /**
-     * This helps our random numbers be a little more random
-     */
-    protected static final int Entropy = 10000;
-
     /*
      * LayerIsland - chance to big land
      * LayerLandRandom - a(3) - chance to increase big land
@@ -202,8 +197,11 @@ public abstract class Layer
         return i;
     }
 
-    protected int nextGroupInt(int x)
+    //TODO: improve this LCG somehow? currently it works, but just barely
+    protected int nextGroupInt(long worldSeed, int x)
     {
+        this.scrambledGroupSeed ^= worldSeed; // do a simple xor with the world seed as a randomization
+
         int i = (int) ((this.scrambledGroupSeed >> 24) % x);
         if (i < 0)
         {
