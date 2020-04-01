@@ -14,6 +14,7 @@ import com.pg85.otg.network.ConfigProvider;
 import com.pg85.otg.util.helpers.StringHelper;
 
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -92,7 +93,8 @@ public class ForgeBiomeRegistryManager
     private static void registerForgeBiome(Biome biome)
     {
     	OTG.log(LogMarker.DEBUG, "Registering biome " + biome.getRegistryName().toString());
-		ForgeRegistries.BIOMES.register(biome);
+//			System.out.println("DUMB THING: " + new ResourceLocation(biome.getTranslationKey()).toString());
+    	Registry.register(Registry.BIOME, new ResourceLocation(biome.getTranslationKey()), biome);
     }
     
 	public static List<BiomeLoadInstruction> getDefaultBiomes()
