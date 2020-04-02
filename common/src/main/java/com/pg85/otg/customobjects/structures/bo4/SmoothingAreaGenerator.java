@@ -1457,7 +1457,7 @@ public class SmoothingAreaGenerator
 
             if(surfaceBlockMaterial == null || surfaceBlockMaterial == DefaultMaterial.UNKNOWN_BLOCK)
             {
-            	surfaceBlockMaterial = DefaultMaterial.GRASS;
+            	surfaceBlockMaterial = DefaultMaterial.GRASS_BLOCK;
             }
 
             if(groundBlockMaterial == null || groundBlockMaterial == DefaultMaterial.UNKNOWN_BLOCK)
@@ -1555,7 +1555,7 @@ public class SmoothingAreaGenerator
 
 		                if(surfaceBlockMaterial == null || surfaceBlockMaterial == DefaultMaterial.UNKNOWN_BLOCK)
 		                {
-		                	surfaceBlockMaterial = DefaultMaterial.GRASS;
+		                	surfaceBlockMaterial = DefaultMaterial.GRASS_BLOCK;
 		                }
 	                }
 
@@ -1587,7 +1587,7 @@ public class SmoothingAreaGenerator
 
                     if(surfaceBlockMaterial == null || surfaceBlockMaterial == DefaultMaterial.UNKNOWN_BLOCK)
                     {
-                    	surfaceBlockMaterial = DefaultMaterial.GRASS;
+                    	surfaceBlockMaterial = DefaultMaterial.GRASS_BLOCK;
                     }
             	}
 

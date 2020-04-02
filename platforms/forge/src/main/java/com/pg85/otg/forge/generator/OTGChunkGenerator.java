@@ -870,29 +870,31 @@ public class OTGChunkGenerator extends NoiseChunkGenerator<OTGGenSettings>
 	@Override
 	public void func_225551_a_(WorldGenRegion p_225551_1_, IChunk p_225551_2_)
 	{
-		ChunkPos chunkpos = p_225551_2_.getPos();
-		int i = chunkpos.x;
-		int j = chunkpos.z;
-		SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
-		sharedseedrandom.setBaseChunkSeed(i, j);
-		ChunkPos chunkpos1 = p_225551_2_.getPos();
-		int k = chunkpos1.getXStart();
-		int l = chunkpos1.getZStart();
-		//double d0 = 0.0625D;
-		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-		
-		for(int i1 = 0; i1 < 16; ++i1)
-		{
-			for(int j1 = 0; j1 < 16; ++j1)
-			{
-				int k1 = k + i1;
-				int l1 = l + j1;
-				int i2 = p_225551_2_.getTopBlockY(Heightmap.Type.WORLD_SURFACE_WG, i1, j1) + 1;
-				double d1 = this.surfaceDepthNoise.func_215460_a((double)k1 * 0.0625D, (double)l1 * 0.0625D, 0.0625D, (double)i1 * 0.0625D) * 15.0D;
-				p_225551_1_.func_226691_t_(blockpos$mutable.setPos(k + i1, i2, l + j1)).buildSurface(sharedseedrandom, p_225551_2_, k1, l1, i2, d1, this.getSettings().getDefaultBlock(), this.getSettings().getDefaultFluid(), this.getSeaLevel(), this.world.getSeed());
-			}
-		}
-		this.makeBedrock(p_225551_2_, sharedseedrandom);
+		//TODO: Surface building is done in the noise generator itself currently. Maybe there's a way to gracefully decouple it to make it work like vanilla?
+
+//		ChunkPos chunkpos = p_225551_2_.getPos();
+//		int i = chunkpos.x;
+//		int j = chunkpos.z;
+//		SharedSeedRandom sharedseedrandom = new SharedSeedRandom();
+//		sharedseedrandom.setBaseChunkSeed(i, j);
+//		ChunkPos chunkpos1 = p_225551_2_.getPos();
+//		int k = chunkpos1.getXStart();
+//		int l = chunkpos1.getZStart();
+//		//double d0 = 0.0625D;
+//		BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+//
+//		for(int i1 = 0; i1 < 16; ++i1)
+//		{
+//			for(int j1 = 0; j1 < 16; ++j1)
+//			{
+//				int k1 = k + i1;
+//				int l1 = l + j1;
+//				int i2 = p_225551_2_.getTopBlockY(Heightmap.Type.WORLD_SURFACE_WG, i1, j1) + 1;
+//				double d1 = this.surfaceDepthNoise.func_215460_a((double)k1 * 0.0625D, (double)l1 * 0.0625D, 0.0625D, (double)i1 * 0.0625D) * 15.0D;
+//				p_225551_1_.func_226691_t_(blockpos$mutable.setPos(k + i1, i2, l + j1)).buildSurface(sharedseedrandom, p_225551_2_, k1, l1, i2, d1, this.getSettings().getDefaultBlock(), this.getSettings().getDefaultFluid(), this.getSeaLevel(), this.world.getSeed());
+//			}
+//		}
+//		this.makeBedrock(p_225551_2_, sharedseedrandom);
 	}
 
 	@Override

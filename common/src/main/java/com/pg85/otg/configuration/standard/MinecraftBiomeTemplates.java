@@ -31,7 +31,7 @@ public class MinecraftBiomeTemplates
             // which gets them from Minecraft
             this.defaultBiomeSurface = this.mojangSettings.getSurfaceHeight();
             this.defaultBiomeVolatility = this.mojangSettings.getSurfaceVolatility();
-            this.defaultSurfaceBlock = this.mojangSettings.getSurfaceBlock() != null ? this.mojangSettings.getSurfaceBlock().toDefaultMaterial() : DefaultMaterial.GRASS;
+            this.defaultSurfaceBlock = this.mojangSettings.getSurfaceBlock() != null ? this.mojangSettings.getSurfaceBlock().toDefaultMaterial() : DefaultMaterial.GRASS_BLOCK;
             this.defaultGroundBlock = this.mojangSettings.getGroundBlock() != null ? this.mojangSettings.getGroundBlock().toDefaultMaterial() : DefaultMaterial.DIRT;
             this.defaultBiomeTemperature = this.mojangSettings.getTemperature();
             this.defaultBiomeWetness = this.mojangSettings.getWetness();
@@ -139,7 +139,7 @@ public class MinecraftBiomeTemplates
             this.defaultDandelions = 4;
             this.defaultEmeraldOre = BiomeStandardValues.EmeraldDepositFrequency;
             this.defaultTree = new Object[] {1, TreeType.Taiga2, 10, TreeType.BigTree, 1, TreeType.Tree, 9};
-            this.defaultSurfaceSurfaceAndGroundControl = new Object[] {DefaultMaterial.GRASS, DefaultMaterial.DIRT, 1.0,
+            this.defaultSurfaceSurfaceAndGroundControl = new Object[] {DefaultMaterial.GRASS_BLOCK, DefaultMaterial.DIRT, 1.0,
                     DefaultMaterial.STONE, DefaultMaterial.STONE, 10.0};
 
             this.defaultInheritMobsBiomeName = "minecraft:mountains";
@@ -773,7 +773,7 @@ public class MinecraftBiomeTemplates
             // Open Terrain Generator does it the other way round: it places
             // hardcoded sand and stained clay and lets the user change the
             // grass and dirt blocks.
-            this.defaultSurfaceBlock = DefaultMaterial.GRASS;
+            this.defaultSurfaceBlock = DefaultMaterial.GRASS_BLOCK;
             this.defaultGroundBlock = DefaultMaterial.DIRT;
 
             this.defaultInheritMobsBiomeName = "minecraft:wooded_badlands_plateau";
@@ -846,7 +846,7 @@ public class MinecraftBiomeTemplates
             super(mojangSettings, worldHeight);
             this.defaultColor = 0x525252;
             this.defaultSurfaceSurfaceAndGroundControl = new Object[] {DefaultMaterial.GRAVEL, DefaultMaterial.GRAVEL, -1.0,
-                    DefaultMaterial.GRASS, DefaultMaterial.DIRT, 2.0, DefaultMaterial.GRAVEL, DefaultMaterial.GRAVEL, 10.0};
+                    DefaultMaterial.GRASS_BLOCK, DefaultMaterial.DIRT, 2.0, DefaultMaterial.GRAVEL, DefaultMaterial.GRAVEL, 10.0};
             this.defaultRarity = 10;
 
             this.defaultInheritMobsBiomeName = "minecraft:gravelly_mountains";
@@ -1032,7 +1032,7 @@ public class MinecraftBiomeTemplates
             this.defaultColor = 0x466246;
             this.defaultRarity = 10;
             this.defaultSurfaceSurfaceAndGroundControl = new Object[] {DefaultMaterial.GRAVEL, DefaultMaterial.GRAVEL, -1.0,
-                    DefaultMaterial.GRASS, DefaultMaterial.DIRT, 2.0, DefaultMaterial.GRAVEL, DefaultMaterial.GRAVEL, 10.0};
+                    DefaultMaterial.GRASS_BLOCK, DefaultMaterial.DIRT, 2.0, DefaultMaterial.GRAVEL, DefaultMaterial.GRAVEL, 10.0};
             // Override IsleInBiome: Extreme Hills of Extreme Hills+
             this.defaultIsle.clear();
             this.defaultIsle.add(DefaultBiome.GRAVELLY_MOUNTAINS.Name);
@@ -1050,7 +1050,7 @@ public class MinecraftBiomeTemplates
             this.defaultRarity = 10;
             this.defaultGrass = 60;
             this.defaultDoubleGrass = 0;
-            this.defaultSurfaceSurfaceAndGroundControl = new Object[] {DefaultMaterial.GRASS, DefaultMaterial.DIRT, -0.5,
+            this.defaultSurfaceSurfaceAndGroundControl = new Object[] {DefaultMaterial.GRASS_BLOCK, DefaultMaterial.DIRT, -0.5,
                     DefaultMaterial.DIRT + ":1", DefaultMaterial.DIRT, 1.75, DefaultMaterial.STONE, DefaultMaterial.STONE, 10};
 
             this.defaultInheritMobsBiomeName = "minecraft:shattered_savanna";

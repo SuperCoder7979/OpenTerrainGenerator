@@ -78,7 +78,7 @@ public class BiomeStandardValues extends Settings
 
     public static final Setting<LocalMaterialData>
             STONE_BLOCK = new MaterialSetting("StoneBlock", DefaultMaterial.STONE),
-            SURFACE_BLOCK = new MaterialSetting("SurfaceBlock", DefaultMaterial.GRASS),
+            SURFACE_BLOCK = new MaterialSetting("SurfaceBlock", DefaultMaterial.GRASS_BLOCK),
             GROUND_BLOCK = new MaterialSetting("GroundBlock", DefaultMaterial.DIRT),
             COOLED_LAVA_BLOCK = WorldStandardValues.COOLED_LAVA_BLOCK,
             WATER_BLOCK = WorldStandardValues.WATER_BLOCK,

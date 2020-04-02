@@ -165,7 +165,7 @@ public class BO4 implements StructuredCustomObject
     	try {
     		bo3SurfaceBlock = replaceWithSurfaceBlock != null && replaceWithSurfaceBlock.length() > 0 ? MaterialHelper.readMaterial(replaceWithSurfaceBlock) : MaterialHelper.readMaterial("GRASS");
 		} catch (InvalidConfigException e1) {
-			bo3SurfaceBlock = MaterialHelper.toLocalMaterialData(DefaultMaterial.GRASS);
+			bo3SurfaceBlock = MaterialHelper.toLocalMaterialData(DefaultMaterial.GRASS_BLOCK);
 			if(OTG.getPluginConfig().spawnLog)
 			{
 				OTG.log(LogMarker.WARN, "Value " + replaceWithSurfaceBlock + " for replaceWithSurfaceBlock in BO3 " + this.getName() + " was not recognised. Using GRASS instead.");
@@ -229,7 +229,7 @@ public class BO4 implements StructuredCustomObject
 	        biomeSurfaceBlock = biomeConfig.surfaceBlock;
 	        if(biomeSurfaceBlock == null)
 	        {
-				biomeSurfaceBlock = MaterialHelper.toLocalMaterialData(DefaultMaterial.GRASS);
+				biomeSurfaceBlock = MaterialHelper.toLocalMaterialData(DefaultMaterial.GRASS_BLOCK);
 	        }
 
 	        biomeGroundBlock = biomeConfig.groundBlock;
@@ -482,7 +482,7 @@ public class BO4 implements StructuredCustomObject
         	    	        biomeSurfaceBlock = biomeConfig.surfaceBlock;
         	    	        if(biomeSurfaceBlock == null)
         	    	        {
-        	    				biomeSurfaceBlock = MaterialHelper.toLocalMaterialData(DefaultMaterial.GRASS);
+        	    				biomeSurfaceBlock = MaterialHelper.toLocalMaterialData(DefaultMaterial.GRASS_BLOCK);
         	    	        }
 
         	    	        biomeGroundBlock = biomeConfig.groundBlock;
