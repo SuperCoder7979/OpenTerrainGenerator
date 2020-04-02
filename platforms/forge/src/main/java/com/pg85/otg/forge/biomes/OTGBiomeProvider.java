@@ -86,7 +86,7 @@ public class OTGBiomeProvider extends BiomeProvider
 	}
 
 	@Override
-	@Nullable
+	@Nullable // Called by createspawnpos
 	public BlockPos func_225531_a_(int p_225531_1_, int p_225531_2_, int p_225531_3_, int p_225531_4_, List<Biome> p_225531_5_, Random p_225531_6_)
 	{
 		int i = p_225531_1_ - p_225531_4_ >> 2;

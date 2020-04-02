@@ -8,7 +8,7 @@ import java.util.Random;
 import com.pg85.otg.OTG;
 import com.pg85.otg.forge.biomes.ForgeBiome;
 import com.pg85.otg.forge.biomes.ForgeBiomeRegistryManager;
-import com.pg85.otg.forge.generator.OTGChunkGenerator;
+import com.pg85.otg.forge.terraingen.OTGChunkGenerator;
 import com.pg85.otg.logging.LogMarker;
 import com.pg85.otg.network.ConfigProvider;
 import com.pg85.otg.network.ServerConfigProvider;
@@ -30,6 +30,7 @@ import com.pg85.otg.exception.BiomeNotFoundException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.server.ServerWorld;
 
 public class ForgeWorld extends LocalWorld
@@ -40,7 +41,9 @@ public class ForgeWorld extends LocalWorld
     private BiomeGenerator biomeGenerator;
     private ConfigProvider settings;
     
+    // HURRAY FOR STATE!!!
     public HashMap<String, LocalBiome> biomeNames = new HashMap<String, LocalBiome>();
+    public HashMap<Biome, ForgeBiome> biomesMap = new HashMap<Biome, ForgeBiome>();
     
     public World world;
     private String name;
@@ -188,6 +191,7 @@ public class ForgeWorld extends LocalWorld
 	{
     	ForgeBiome forgeBiome = ForgeBiomeRegistryManager.getOrCreateBiome(biomeConfig, otgBiomeId, this.getName(), configProvider);
         this.biomeNames.put(forgeBiome.getName(), forgeBiome);
+        this.biomesMap.put(forgeBiome.biomeBase, forgeBiome);
         return forgeBiome;
 	}
 
@@ -205,6 +209,11 @@ public class ForgeWorld extends LocalWorld
     	return biomes;
 	}
 
+	public ForgeBiome getBiome(Biome biome)
+	{
+		return this.biomesMap.get(biome);
+	}
+	
 	@Override
 	public LocalBiome getBiome(int x, int z) throws BiomeNotFoundException
 	{
@@ -227,7 +236,7 @@ public class ForgeWorld extends LocalWorld
 	public LocalBiome getBiomeByNameOrNull(String name)
 	{
 		return this.biomeNames.get(name);
-	}	
+	}
 	
 	@Override
 	public void prepareDefaultStructures(int chunkX, int chunkZ, boolean dry)

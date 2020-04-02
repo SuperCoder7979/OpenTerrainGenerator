@@ -22,9 +22,14 @@ import java.awt.*;
  */
 public class OTGBiome extends Biome// implements IOTGASMBiome
 {
-    OTGBiome(BiomeConfig config, ResourceLocation registryKey)
+	public String presetName;
+	public BiomeConfig biomeConfig;
+	
+    OTGBiome(BiomeConfig config, String presetName, ResourceLocation registryKey)
     {
 		super(GetBiomeBuilder(config));
+		this.presetName = presetName;
+		this.biomeConfig = config;
 		this.func_226711_a_(Feature.VILLAGE.func_225566_b_(new VillageConfig("village/plains/town_centers", 6)));
 		this.func_226711_a_(Feature.PILLAGER_OUTPOST.func_225566_b_(IFeatureConfig.NO_FEATURE_CONFIG));
 		this.func_226711_a_(Feature.MINESHAFT.func_225566_b_(new MineshaftConfig(0.004D, MineshaftStructure.Type.NORMAL)));

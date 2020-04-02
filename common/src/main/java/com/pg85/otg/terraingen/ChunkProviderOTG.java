@@ -37,7 +37,6 @@ public class ChunkProviderOTG
     private final NoiseGeneratorPerlinOctaves vol2NoiseGen;
     private final NoiseGeneratorPerlinOctaves volNoiseGen;
     private final NoiseGeneratorPerlinMesaBlocks biomeBlocksNoiseGen;
-    private final NoiseGeneratorPerlinOctaves oldTerrainGeneratorNoiseGen;
     private final NoiseGeneratorPerlinOctaves noiseHeightNoiseGen;
 
     private double[] biomeBlocksNoise = new double[CHUNK_X_SIZE * CHUNK_Z_SIZE];
@@ -45,7 +44,6 @@ public class ChunkProviderOTG
     private double[] volNoise;
     private double[] vol1Noise;
     private double[] vol2Noise;
-    private double[] oldTerrainGeneratorNoise;
     private double[] noiseHeightNoise;
     private float[] nearBiomeWeightArray;
 
@@ -88,7 +86,6 @@ public class ChunkProviderOTG
         this.vol2NoiseGen = new NoiseGeneratorPerlinOctaves(this.random, 16);
         this.volNoiseGen = new NoiseGeneratorPerlinOctaves(this.random, 8);
         this.biomeBlocksNoiseGen = new NoiseGeneratorPerlinMesaBlocks(this.random, 4);
-        this.oldTerrainGeneratorNoiseGen = new NoiseGeneratorPerlinOctaves(this.random, 10);
         this.noiseHeightNoiseGen = new NoiseGeneratorPerlinOctaves(this.random, 16);
 
         this.caveGen = new CavesGen(configs.getWorldConfig(), this.localWorld);
@@ -349,10 +346,6 @@ public class ChunkProviderOTG
         double xzScale = 684.41200000000003D * worldConfig.getFractureHorizontal();
         double yScale = 684.41200000000003D * worldConfig.getFractureVertical();
 
-        if (worldConfig.oldTerrainGenerator)
-        {
-            this.oldTerrainGeneratorNoise = this.oldTerrainGeneratorNoiseGen.Noise2D(this.oldTerrainGeneratorNoise, xOffset, zOffset, NOISE_MAX_X, NOISE_MAX_Z, 1.121D, 1.121D);
-        }
         this.noiseHeightNoise = this.noiseHeightNoiseGen.Noise2D(this.noiseHeightNoise, xOffset, zOffset, NOISE_MAX_X, NOISE_MAX_Z, 200.0D, 200.0D);
 
         this.volNoise = this.volNoiseGen.Noise3D(this.volNoise, xOffset, yOffset, zOffset, NOISE_MAX_X, maxYSections, NOISE_MAX_Z, xzScale / 80.0D, yScale / 160.0D, xzScale / 80.0D);
@@ -404,17 +397,12 @@ public class ChunkProviderOTG
                     noiseHeight /= 8.0D;
                 }
 
-                if (!worldConfig.oldTerrainGenerator)
+                if (worldConfig.improvedRivers)
                 {
-                    if (worldConfig.improvedRivers)
-                    {
-                        this.biomeFactorWithRivers(x, z, usedYSections, noiseHeight, biomeArray, riverArray);
-                    } else {
-                        this.biomeFactor(x, z, usedYSections, noiseHeight, biomeArray);
-                    }
+                    this.biomeFactorWithRivers(x, z, usedYSections, noiseHeight, biomeArray, riverArray);
                 } else {
-                    this.oldBiomeFactor(x, z, i2D, usedYSections, noiseHeight, biomeArray);
-            	}
+                    this.biomeFactor(x, z, usedYSections, noiseHeight, biomeArray);
+                }
 
                 i2D++;
 

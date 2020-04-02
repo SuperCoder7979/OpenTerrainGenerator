@@ -57,13 +57,6 @@ public abstract class OTGEngine
     {
         // Shutdown all loaders
         customObjectManager.shutdown();
-
-        // Null out values to help the garbage collector
-        customObjectManager = null;
-        biomeResourcesManager = null;
-        customObjectResourcesManager = null;
-        biomeManagers = null;
-        pluginConfig = null;
         cancelableEventHandlers.clear();
         monitoringEventHandlers.clear();
         cancelableEventHandlers = null;
@@ -319,7 +312,7 @@ public abstract class OTGEngine
 	    				if(file.getName().equals("WorldConfig.ini"))
 	    				{
 			    			worldNames.add(worldDir.getName());
-			    			WorldConfig worldConfig = OTG.loadWorldConfigFromDisk(worldDir);
+			    			WorldConfig worldConfig = WorldConfig.loadWorldConfigFromDisk(worldDir);
 					        Presets.put(worldDir.getName(), new DimensionConfigGui(worldDir.getName(), worldConfig));
 					        break;
 	    				}
@@ -371,6 +364,16 @@ public abstract class OTGEngine
 	public void unregisterOTGBiomeIdsForWorld(String worldName)
 	{
 		otgBiomeIdsByWorld.remove(worldName);
+	}
+	
+	public BiomeConfig getBiomeById(String worldName, int i)
+	{
+		BiomeConfig[] biomes = otgBiomeIdsByWorld.get(worldName);
+		if(biomes != null && biomes.length > i)
+		{
+			return biomes[i];
+		}
+		return null;
 	}
     
     // Materials

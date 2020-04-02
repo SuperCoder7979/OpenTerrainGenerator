@@ -1,6 +1,6 @@
 package com.pg85.otg.forge.biomes;
 
-import com.pg85.otg.forge.generator.OTGGenSettings;
+import com.pg85.otg.forge.terraingen.OTGGenSettings;
 
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.provider.IBiomeProviderSettings;

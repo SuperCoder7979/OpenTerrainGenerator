@@ -1,4 +1,4 @@
-package com.pg85.otg.forge.generator;
+package com.pg85.otg.forge.terraingen;
 
 import net.minecraft.world.gen.OverworldGenSettings;
 

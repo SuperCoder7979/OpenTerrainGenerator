@@ -20,8 +20,8 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import com.pg85.otg.OTG;
 import com.pg85.otg.configuration.standard.PluginStandardValues;
-import com.pg85.otg.forge.generator.OTGChunkGenerator;
-import com.pg85.otg.forge.generator.OTGGenSettings;
+import com.pg85.otg.forge.terraingen.OTGChunkGenerator;
+import com.pg85.otg.forge.terraingen.OTGGenSettings;
 import com.pg85.otg.forge.world.OTGWorldType;
 import com.pg85.otg.logging.LogMarker;
 

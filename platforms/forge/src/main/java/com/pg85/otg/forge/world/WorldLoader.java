@@ -2,6 +2,7 @@ package com.pg85.otg.forge.world;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import java.io.File;
@@ -36,9 +37,12 @@ import com.pg85.otg.util.helpers.FileHelper;
  */
 public final class WorldLoader
 {	
+	private final Object worldsMapsLock = new Object();
 	private final File configsDir;
-    private final HashMap<String, ForgeWorld> worlds = new HashMap<String, ForgeWorld>();
-    private final HashMap<String, ForgeWorld> unloadedWorlds = new HashMap<String, ForgeWorld>();
+    private final HashMap<String, ForgeWorld> worldsByName = new HashMap<String, ForgeWorld>();
+    private final HashMap<ServerWorld, ForgeWorld> worldsByWorld = new HashMap<ServerWorld, ForgeWorld>();
+    private final HashMap<String, ForgeWorld> unloadedWorldsByName = new HashMap<String, ForgeWorld>();
+    private final HashMap<String, ForgeWorld> unloadedWorldsByWorld = new HashMap<String, ForgeWorld>();
 
     public WorldLoader()
     {
@@ -116,13 +120,12 @@ public final class WorldLoader
         	world.provideWorldInstance(mcWorld);
         }
         
-        synchronized(this.worlds)
+        synchronized(worldsMapsLock)
         {
-        	synchronized(this.unloadedWorlds)
-        	{
-        		this.worlds.put(worldName, world);
-        		this.unloadedWorlds.remove(worldName);
-        	}
+    		this.worldsByName.put(worldName, world);
+    		this.unloadedWorldsByName.remove(worldName);
+    		this.worldsByWorld.put(mcWorld, world);
+    		this.unloadedWorldsByWorld.remove(mcWorld);
         }
         
         return world;
@@ -199,11 +202,28 @@ public final class WorldLoader
     		return getOverWorld();
     	}
 
-    	ForgeWorld forgeWorld = null;
-        synchronized(this.worlds)
+    	ForgeWorld forgeWorld = null;        
+        synchronized(worldsMapsLock)
         {
-        	forgeWorld = this.worlds.get(name);
+        	forgeWorld = this.worldsByName.get(name);
         }
+        
+        return forgeWorld;
+    }
+    
+    public ForgeWorld getWorld(ServerWorld world)
+    {
+    	if(world == null)
+    	{
+    		return null;
+    	}
+
+    	ForgeWorld forgeWorld = null;        
+        synchronized(worldsMapsLock)
+        {
+        	forgeWorld = this.worldsByName.get(world);
+        }
+        
         return forgeWorld;
     }
     
@@ -231,13 +251,10 @@ public final class WorldLoader
     public ArrayList<LocalWorld> getAllWorlds()
     {
     	ArrayList<LocalWorld> allWorlds = new ArrayList<LocalWorld>();
-    	synchronized(worlds)
+    	synchronized(worldsMapsLock)
     	{
-    		synchronized(unloadedWorlds)
-    		{
-    			allWorlds.addAll(worlds.values());
-    			allWorlds.addAll(unloadedWorlds.values());
-    		}
+			allWorlds.addAll(worldsByName.values());
+			allWorlds.addAll(unloadedWorldsByName.values());
     	}
     	return allWorlds;
     }

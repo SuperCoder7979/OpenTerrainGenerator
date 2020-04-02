@@ -19,6 +19,7 @@ import com.pg85.otg.configuration.biome.BiomeGroupManager;
 import com.pg85.otg.configuration.biome.settings.ReplaceBlocks;
 import com.pg85.otg.configuration.fallbacks.BlockFallback;
 import com.pg85.otg.configuration.fallbacks.FallbackConfig;
+import com.pg85.otg.configuration.io.FileSettingsReader;
 import com.pg85.otg.configuration.io.SettingsMap;
 import com.pg85.otg.configuration.io.SimpleSettingsMap;
 import com.pg85.otg.configuration.settingType.Setting;
@@ -162,7 +163,6 @@ public class WorldConfig extends ConfigFile
     public boolean woodLandMansionsEnabled;
 
     // Terrain
-    public boolean oldTerrainGenerator;
     public int waterLevelMax;
     public int waterLevelMin;
     public LocalMaterialData waterBlock;
@@ -682,8 +682,6 @@ public class WorldConfig extends ConfigFile
         this.resourcesSeed = reader.getSetting(WorldStandardValues.RESOURCES_SEED);
         this.populationBoundsCheck = reader.getSetting(WorldStandardValues.POPULATION_BOUNDS_CHECK);
         this.populateUsingSavedBiomes = reader.getSetting(WorldStandardValues.POPULATE_USING_SAVED_BIOMES);
-
-        this.oldTerrainGenerator = false; //this.modeTerrain == TerrainMode.OldGenerator;
 
         this.author = reader.getSetting(WorldStandardValues.AUTHOR);
         this.description = reader.getSetting(WorldStandardValues.DESCRIPTION);
@@ -1469,4 +1467,15 @@ public class WorldConfig extends ConfigFile
             return o1.getValue() - o2.getValue();
         }
     };
+    
+	public static WorldConfig loadWorldConfigFromDisk(File worldDir)
+	{
+        File worldConfigFile = new File(worldDir, WorldStandardValues.WORLD_CONFIG_FILE_NAME);
+        if(!worldConfigFile.exists())
+        {
+        	return null;
+        }
+        SettingsMap settingsMap = FileSettingsReader.read(worldDir.getName(), worldConfigFile);
+        return new WorldConfig(worldDir, settingsMap, null, null);
+	}
 }

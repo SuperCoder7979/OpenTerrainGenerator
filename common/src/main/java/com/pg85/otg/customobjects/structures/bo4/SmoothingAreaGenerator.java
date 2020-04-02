@@ -18,7 +18,6 @@ import com.pg85.otg.customobjects.bo4.bo4function.BO4RandomBlockFunction;
 import com.pg85.otg.customobjects.structures.CustomStructureCoordinate;
 import com.pg85.otg.customobjects.structures.bo4.BO4CustomStructureCoordinate;
 import com.pg85.otg.exception.InvalidConfigException;
-import com.pg85.otg.terraingen.surface.MesaSurfaceGenerator;
 import com.pg85.otg.util.ChunkCoordinate;
 import com.pg85.otg.util.bo3.NamedBinaryTag;
 import com.pg85.otg.util.bo3.Rotation;
@@ -1570,11 +1569,12 @@ public class SmoothingAreaGenerator
 	                }
                 }
 
+				// TODO: Reimplement this for 1.15.x
                 // If using the biome's surfaceblock then take what was previously the top
                 // block and use it's material as the surface block (solves no podzol problem in mega spruce taiga)
                 if(
-            		!surfaceBlockSet &&
-					!(biomeConfig.surfaceAndGroundControl instanceof MesaSurfaceGenerator)
+            		!surfaceBlockSet //&&
+					//!(biomeConfig.surfaceAndGroundControl instanceof MesaSurfaceGenerator)
         		)
             	{
         			LocalMaterialData originalSurfaceBlock = originalTopBlocks.get(ChunkCoordinate.fromChunkCoords(blockToSpawn.x, blockToSpawn.z));
@@ -1635,7 +1635,9 @@ public class SmoothingAreaGenerator
                         blockToQueueForSpawn.z = blockToSpawn.z;
                         blockToQueueForSpawn.material = MaterialHelper.toLocalMaterialData(materialToSet);
 
+    					// TODO: Reimplement this for 1.15.x
                         // Apply mesa blocks if needed
+                        /*
                         if(
                     		!blockToQueueForSpawn.material.isEmptyOrAir() &&
                     		!blockToQueueForSpawn.material.isLiquid() &&
@@ -1658,11 +1660,12 @@ public class SmoothingAreaGenerator
         		        	}
     		        		setBlock(blockToQueueForSpawn.x, blockToQueueForSpawn.y, blockToQueueForSpawn.z, blockToQueueForSpawn.material, null, world, chunkBeingPopulated);
                         } else {
+                        */
                         	if (!sourceBlockMaterial.toDefaultMaterial().equals(blockToQueueForSpawn.material.toDefaultMaterial()))
                         	{
                         		setBlock(blockToQueueForSpawn.x, blockToQueueForSpawn.y, blockToQueueForSpawn.z, blockToQueueForSpawn.material, null, world, chunkBeingPopulated);
                         	}
-                        }
+                        //}
 	                    if(bBreak)
 	                    {
 	                        break;
@@ -1767,7 +1770,9 @@ public class SmoothingAreaGenerator
                         blockToQueueForSpawn.z = blockToSpawn.z;
                         blockToQueueForSpawn.material = MaterialHelper.toLocalMaterialData(materialToSet);
 
+    					// TODO: Reimplement this for 1.15.x
                         // Apply mesa blocks if needed
+                        /*
                         if(
                     		!blockToQueueForSpawn.material.isEmptyOrAir() &&
                     		!blockToQueueForSpawn.material.isLiquid() &&
@@ -1791,11 +1796,12 @@ public class SmoothingAreaGenerator
         		        	}
     		        		setBlock(blockToQueueForSpawn.x, blockToQueueForSpawn.y, blockToQueueForSpawn.z, blockToQueueForSpawn.material, null, world, chunkBeingPopulated);
                         } else {
+                        */
                         	if (!sourceBlockMaterial.toDefaultMaterial().equals(blockToQueueForSpawn.material.toDefaultMaterial()))
                         	{
                         		setBlock(blockToQueueForSpawn.x, blockToQueueForSpawn.y, blockToQueueForSpawn.z, blockToQueueForSpawn.material, null, world, chunkBeingPopulated);
                         	}
-                        }
+                        //}
 	                    if(bBreak)
 	                    {
 	                        break;

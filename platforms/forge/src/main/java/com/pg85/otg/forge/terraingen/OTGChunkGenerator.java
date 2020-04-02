@@ -1,4 +1,4 @@
-package com.pg85.otg.forge.generator;
+package com.pg85.otg.forge.terraingen;
 
 import java.io.File;
 import java.util.BitSet;
@@ -202,21 +202,21 @@ public class OTGChunkGenerator extends NoiseChunkGenerator<OTGGenSettings>
         	        	OTG.getDimensionsConfig().save();
         	        } else {
         	        	// Create dimensionsconfig from the preset's worldconfig, only works if worldname is the same as preset name (which is the case for OTG overworlds on MP servers)
-        	        	WorldConfig worldConfig = OTG.loadWorldConfigFromDisk(new File(OTG.getEngine().getOTGRootFolder(), PluginStandardValues.PresetsDirectoryName + File.separator + worldDir.getName()));
+        	        	WorldConfig worldConfig = WorldConfig.loadWorldConfigFromDisk(new File(OTG.getEngine().getOTGRootFolder(), PluginStandardValues.PresetsDirectoryName + File.separator + worldDir.getName()));
         	        	if(worldConfig == null)
         	        	{
         	        		// The world dir / world config is missing, this can be either an error or an MP server being started and creating an OTG overworld, in which case default configs should be generated.
         	        		// Create a new world dir with default configs.
         					((ForgeEngine)OTG.getEngine()).getWorldLoader().createDefaultOTGWorld(worldDir.getName()); // For MP servers, world name == preset name.
         					OTG.getEngine().loadPresets();
-        					worldConfig = OTG.loadWorldConfigFromDisk(new File(OTG.getEngine().getOTGRootFolder(), PluginStandardValues.PresetsDirectoryName + File.separator + worldDir.getName()));
+        					worldConfig = WorldConfig.loadWorldConfigFromDisk(new File(OTG.getEngine().getOTGRootFolder(), PluginStandardValues.PresetsDirectoryName + File.separator + worldDir.getName()));
         	        	}
         	        	
     	        		DimensionsConfig dimsConfig = new DimensionsConfig(worldDir);
     	        		dimsConfig.Overworld = new DimensionConfig(worldDir.getName(), worldConfig);
     	        		for(String dimToAdd : worldConfig.dimensions)
     	        		{
-    	        			WorldConfig dimWorldConfig = OTG.loadWorldConfigFromDisk(new File(OTG.getEngine().getOTGRootFolder(), PluginStandardValues.PresetsDirectoryName + File.separator + dimToAdd));
+    	        			WorldConfig dimWorldConfig = WorldConfig.loadWorldConfigFromDisk(new File(OTG.getEngine().getOTGRootFolder(), PluginStandardValues.PresetsDirectoryName + File.separator + dimToAdd));
     	        			if(dimWorldConfig != null)
     	        			{
     	        				dimsConfig.Dimensions.add(new DimensionConfig(dimToAdd, dimWorldConfig));

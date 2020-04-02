@@ -22,10 +22,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ForgeBiomeRegistryManager
 {
-	public static ForgeBiome getOrCreateBiome(BiomeConfig biomeConfig, int otgBiomeId, String worldName, ConfigProvider configProvider)
+	public static ForgeBiome getOrCreateBiome(BiomeConfig biomeConfig, int otgBiomeId, String presetName, ConfigProvider configProvider)
 	{
 		// NOTE: Let's hope noone uses dots in their folder names... (Biome Bundle and Biome.Bundle would be the same to OTG)
-	    String biomeNameForRegistry = worldName.toLowerCase().replace(' ', '.') + "_" + StringHelper.toComputerFriendlyName(biomeConfig.getName());
+	    String biomeNameForRegistry = presetName.toLowerCase().replace(' ', '.') + "_" + StringHelper.toComputerFriendlyName(biomeConfig.getName());
 	    String resourceDomain = PluginStandardValues.PLUGIN_NAME_LOWER_CASE;
 	    ResourceLocation registryKey = new ResourceLocation(resourceDomain, biomeNameForRegistry);
 	
@@ -34,7 +34,7 @@ public class ForgeBiomeRegistryManager
 	    if (biome == null)
 	    {
 	        // No existing biome, create new one
-	    	biome = new OTGBiome(biomeConfig, registryKey);
+	    	biome = new OTGBiome(biomeConfig, presetName, registryKey);
 	    	registerForgeBiome(biome);
 		    ForgeBiomeRegistryManager.registerBiomeInBiomeDictionary(biome, biomeConfig, configProvider);
 	    }

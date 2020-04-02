@@ -1,4 +1,4 @@
-package com.pg85.otg.forge.generator;
+package com.pg85.otg.forge.terraingen;
 
 import com.pg85.otg.common.LocalMaterialData;
 import com.pg85.otg.forge.materials.ForgeMaterialData;

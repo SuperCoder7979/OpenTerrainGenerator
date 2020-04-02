@@ -9,8 +9,8 @@ import com.pg85.otg.configuration.standard.PluginStandardValues;
 import com.pg85.otg.forge.OTGPlugin;
 import com.pg85.otg.forge.biomes.OTGBiomeProvider;
 import com.pg85.otg.forge.biomes.OTGBiomeProviderSettings;
-import com.pg85.otg.forge.generator.OTGChunkGenerator;
-import com.pg85.otg.forge.generator.OTGGenSettings;
+import com.pg85.otg.forge.terraingen.OTGChunkGenerator;
+import com.pg85.otg.forge.terraingen.OTGGenSettings;
 
 public class OTGWorldType extends WorldType
 {
