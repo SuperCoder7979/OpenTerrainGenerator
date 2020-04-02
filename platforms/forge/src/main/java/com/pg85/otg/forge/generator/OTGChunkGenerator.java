@@ -166,7 +166,7 @@ public class OTGChunkGenerator extends NoiseChunkGenerator<OTGGenSettings>
 		this.field_222568_o = new OctavesNoiseGenerator(this.randomSeed, 15, 0);
 		this.field_222569_p = new OctavesNoiseGenerator(this.randomSeed, 15, 0);
 		this.field_222570_q = new OctavesNoiseGenerator(this.randomSeed, 7, 0);
-		this.surfaceDepthNoise = (INoiseGenerator)(usePerlin ? new PerlinNoiseGenerator(this.randomSeed, 3, 0) : new OctavesNoiseGenerator(this.randomSeed, 3, 0));
+		this.surfaceDepthNoise = usePerlin ? new PerlinNoiseGenerator(this.randomSeed, 3, 0) : new OctavesNoiseGenerator(this.randomSeed, 3, 0);
 		this.randomSeed.skip(2620);
 		this.depthNoise = new OctavesNoiseGenerator(this.randomSeed, 15, 0);
 		this.field_222577_j = worldIn.getWorldInfo().getGenerator() == WorldType.AMPLIFIED;

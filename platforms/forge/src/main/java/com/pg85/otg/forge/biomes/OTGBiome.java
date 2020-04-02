@@ -81,7 +81,7 @@ public class OTGBiome extends Biome// implements IOTGASMBiome
 			biomeBuilder.precipitation(Biome.RainType.NONE);
 			biomeBuilder.downfall(0.0f);			
 		}
-
+		
 		//water color is multiplier, multiply with vanilla's default value
 		//TODO: check if this is the intended behavior
 
@@ -90,7 +90,9 @@ public class OTGBiome extends Biome// implements IOTGASMBiome
         int r = (((multiplier & 0xFF0000) >> 16) / 255) * ((4159204 & 0xFF0000) >> 16);
         int g = (((multiplier & 0xFF00) >> 8) / 255) * ((4159204 & 0xFF00) >> 8);
         int b = (((multiplier & 0xFF)) / 255) * ((4159204 & 0xFF));
-		int finalColor = (r & 0xFF << 16) | (g & 0xFF << 8)  | (b & 0xFF);
+		int finalColor = ((r & 0xFF) << 16) |
+				((g & 0xFF) << 8)  |
+				((b & 0xFF));
 
 		biomeBuilder.waterColor(finalColor); //4159204
 		biomeBuilder.waterFogColor(329011);	

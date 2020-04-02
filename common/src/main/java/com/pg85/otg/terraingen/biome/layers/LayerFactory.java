@@ -52,7 +52,10 @@ public final class LayerFactory
         Layer zoomedLayer = new LayerZoomVoronoi(10L, getDefaultOceanBiomeId(world),  mainLayer);
         zoomedLayer.initWorldGenSeed(world.getSeed());
 
-        return new Layer[] {mainLayer, zoomedLayer};
+        mainLayer.initWorldGenSeed(world.getSeed());
+
+        //TODO: make this return 1 layer only
+        return new Layer[] {mainLayer, mainLayer};
     }
 
     /**
@@ -74,7 +77,10 @@ public final class LayerFactory
         Layer zoomedLayer = new LayerZoomVoronoi(10L, getDefaultOceanBiomeId(world), mainLayer);
         zoomedLayer.initWorldGenSeed(world.getSeed());
 
-        return new Layer[] {mainLayer, zoomedLayer};
+        mainLayer.initWorldGenSeed(world.getSeed());
+
+        //TODO: make this return 1 layer only
+        return new Layer[] {mainLayer, mainLayer};
     }
 
     /**
@@ -359,7 +365,10 @@ public final class LayerFactory
 
         zoomedLayer.initWorldGenSeed(world.getSeed());
 
-        return new Layer[] {mainLayer, zoomedLayer};
+        mainLayer.initWorldGenSeed(world.getSeed());
+
+        //TODO: make this return 1 layer only
+        return new Layer[] {mainLayer, mainLayer};
     }
 
     private static Layer initMainLayer(LocalWorld world)
